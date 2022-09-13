@@ -1,235 +1,184 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "description": "A WTF Server - TS Version",
-        "version": "1.0.0",
-        "title": "WTF REST API",
-        "contact": {
-            "email": "hayato0227@outlook.com"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-        }
-    },
-    "host": "localhost",
-    "basePath": "/acronym",
-    "tags": [
-        {
-            "name": "WTF",
-            "description": "World Testing Foundation"
-        }
-    ],
-    "schemes": [
-        "http"
-    ],
-    "paths": {
-        "/acronym?from=50&limit=10&search=:search": {
-            "post": {
-                "tags": [
-                    "WTF"
-                ],
-                "summary": "get a list of acronyms",
-                "description": "",
-                "operationId": "getAcronymList",
-                "consumes": [
-                    "application/x-www-form-urlencoded"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "limit",
-                        "in": "path",
-                        "description": "limit to display acronyms( bigger than 0, smaller than 100 )",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "offset",
-                        "in": "path",
-                        "description": "offset where to display acronyms( bigger than 0)",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "name": "search",
-                        "in": "path",
-                        "description": "query string to find matching words",
-                        "required": false,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
-                    }
-                },
-                "security": [
-                    {
-                        "petstore_auth": [
-                            "write:pets",
-                            "read:pets"
-                        ]
-                    }
-                ]
-            }
-        },
-        "/acronym": {
-            "post": {
-                "tags": [
-                    "WTF"
-                ],
-                "summary": "Add a new acronym to db",
-                "description": "",
-                "operationId": "createAcronym",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "acronym",
-                        "description": "string of Acronym to be added",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "definition",
-                        "description": "string of definition to be added",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
-                    }
-                },
-                "security": [
-                    {
-                        "petstore_auth": [
-                            "write:pets",
-                            "read:pets"
-                        ]
-                    }
-                ]
-            },
-            "put": {
-                "tags": [
-                    "WTF"
-                ],
-                "summary": "Update an existing acronym",
-                "description": "",
-                "operationId": "updateAcronym",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "acronym",
-                        "description": "key of an acronym to be updated",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "definition",
-                        "description": "string of definition to be updated",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
-                    },
-                    "404": {
-                        "description": "Acronym not found"
-                    }
-                },
-                "security": [
-                    {
-                        "petstore_auth": [
-                            "write:pets",
-                            "read:pets"
-                        ]
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "WTF"
-                ],
-                "summary": "Delete an existing acronym",
-                "description": "",
-                "operationId": "deleteAcronym",
-                "consumes": [
-                    "multipart/form-data"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "acronym",
-                        "description": "key of an acronym to be deleted",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "definition",
-                        "description": "string of definition to be deleted",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation"
-                    },
-                    "404": {
-                        "description": "Acronym not found"
-                    }
-                },
-                "security": [
-                    {
-                        "petstore_auth": [
-                            "write:pets",
-                            "read:pets"
-                        ]
-                    }
-                ]
-            }
-        }
-    },
-    "securityDefinitions": {
-        "api_key": {
-            "type": "apiKey",
-            "name": "api_key",
-            "in": "header"
-        },
-        "petstore_auth": {
-            "type": "oauth2",
-            "authorizationUrl": "https://petstore.swagger.io/oauth/authorize",
-            "flow": "implicit",
-            "scopes": {
-                "read:pets": "read your pets",
-                "write:pets": "modify pets in your account"
-            }
-        }
+  "swagger": "2.0",
+  "info": {
+    "description": "A WTF Server - TS Version",
+    "version": "1.0.0",
+    "title": "WTF REST API"
+  },
+  "host": "wtf-acronym.herokuapp.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "WTF",
+      "description": "World Testing Foundation"
     }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/acronym": {
+      "get": {
+        "tags": [
+          "WTF"
+        ],
+        "summary": "get a list of acronyms",
+        "description": "",
+        "operationId": "getAcronymList",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit to display acronyms( bigger than 0, smaller than 100 )",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "offset where to display acronyms( bigger than 0)",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "query string to find matching words",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WTF"
+        ],
+        "summary": "Add a new acronym to db",
+        "description": "",
+        "operationId": "createAcronym",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Acronym"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/acronym/{acronym}": {
+      "put": {
+        "tags": [
+          "WTF"
+        ],
+        "summary": "Update an existing acronym",
+        "description": "",
+        "operationId": "updateAcronym",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "acronym",
+            "description": "key of an acronym to be updated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "definition",
+            "description": "string of definition to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Definition"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Acronym not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "WTF"
+        ],
+        "summary": "Delete an existing acronym",
+        "description": "",
+        "operationId": "deleteAcronym",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "acronym",
+            "description": "key of an acronym to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "404": {
+            "description": "Acronym not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Acronym": {
+        "type": "object",
+        "properties": {
+          "acronym": {
+            "type": "string",
+            "example": "btw"
+          },
+          "definition": {
+            "type": "string",
+            "example": "by the way"
+          }
+        }
+      },
+      "Definition": {
+        "type": "object",
+        "properties": {
+          "definition": {
+            "type": "string",
+            "example": "update"
+          }
+        }
+      }
+    }
+  }
 }
