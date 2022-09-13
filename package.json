@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "REST API",
   "main": "index.ts",
-  "type": "module",
   "scripts": {
     "test": "jest --detectOpenHandles",
     "start": "node src/index.ts"
