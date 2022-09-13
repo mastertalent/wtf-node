@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "start": "nodemon src/index.ts"
+    "start": "node src/index.ts"
   },
   "postinstall": "tsc",
   "engines": {
