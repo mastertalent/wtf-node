@@ -5,11 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "start": "node src/index.ts"
-  },
-  "postinstall": "tsc",
-  "engines": {
-    "node": "15.8.0"
+    "start": "ts-node-esm src/index.ts"
   },
   "postinstall": "tsc",
   "engines": {
