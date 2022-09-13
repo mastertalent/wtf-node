@@ -8,6 +8,10 @@
     "test": "jest --detectOpenHandles",
     "start": "nodemon src/index.ts"
   },
+  "postinstall": "tsc",
+  "engines": {
+    "node": "15.8.0"
+  },
   "keywords": [
     "acronym"
   ],
