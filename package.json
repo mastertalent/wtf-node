@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "REST API",
   "main": "index.ts",
-  "type": "module",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "start": "nodemon src/index.ts"
+    "start": "node src/index.ts"
+  },
+  "postinstall": "tsc",
+  "engines": {
+    "node": "15.8.0"
   },
   "postinstall": "tsc",
   "engines": {
