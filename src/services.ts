@@ -9,7 +9,8 @@ export async function getList(
   search: string
 ): Promise<IAcronymList> {
   try {
-    const searchStr = search.replace(/ +(?= ) /g, "");
+    const searchStr =
+      search == undefined ? "" : search.replace(/ +(?= ) /g, "");
     const regEx = new RegExp(searchStr, "gi");
     const docs = await Acronym.find(
       {
