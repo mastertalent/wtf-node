@@ -1,7 +1,11 @@
-import fs from "fs";
-import { db_file } from "./common/constants";
 import { validationResult } from "express-validator";
-import acronymService from "./services";
+import {
+  getList,
+  _createAcronym,
+  _updateAcronym,
+  _deleteAcronym,
+} from "./services";
+import { IAcronymList } from "./common/interface";
 
 const getAcronymList = async (req: any, res: any) => {
   const errors = validationResult(req);
@@ -16,7 +20,9 @@ const getAcronymList = async (req: any, res: any) => {
 
     const resource = req.path.split("/")[1];
 
-    const { data, totalCount } = acronymService.getList(limit, offset, search);
+    const result: IAcronymList = await getList(limit, offset, search);
+
+    const { data, totalCount } = result;
 
     return res
       .header("Access-Control-Expose-Headers", "Content-Range")
@@ -45,7 +51,7 @@ const createAcronym = async (req: any, res: any) => {
   try {
     const { acronym, definition } = req.body;
 
-    acronymService.create(acronym, definition);
+    await _createAcronym(acronym, definition);
 
     return res.status(200).send({ status: 200, message: "Success!" });
   } catch (e) {
@@ -62,7 +68,7 @@ const updateAcronym = async (req: any, res: any) => {
     const { acronym } = req.params;
     const { definition } = req.body;
 
-    if (acronymService.update(acronym, definition) === -1) {
+    if ((await _updateAcronym(acronym, definition)) === -1) {
       return res
         .status(404)
         .send({ status: 404, message: "Acronym Not Found!" });
@@ -82,7 +88,7 @@ const deleteAcronym = async (req: any, res: any) => {
   try {
     const { acronym } = req.params;
 
-    if (acronymService.delete(acronym) === -1) {
+    if ((await _deleteAcronym(acronym)) === -1) {
       return res
         .status(404)
         .send({ status: 404, message: "Acronym Not Found!" });

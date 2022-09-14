@@ -11,6 +11,13 @@ const checkParam = buildCheckFunction(["query", "body", "params"]);
 
 const routes = express.Router();
 
+routes.get("/", (req, res) => {
+  res.send({
+    status: 200,
+    message: "Acronym REST API",
+  });
+});
+
 routes.get(
   "/acronym",
   [
@@ -41,5 +48,12 @@ routes.delete(
   [checkParam("acronym").exists().isString()],
   deleteAcronym
 );
+
+routes.use("*", (req, res) => {
+  res.status(404).send({
+    status: 404,
+    message: "Not Found!",
+  });
+});
 
 export default routes;
